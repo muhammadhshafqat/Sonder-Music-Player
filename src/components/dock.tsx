@@ -1,7 +1,7 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../styles/dock.css";
 import { useGlobalContext } from "../context/globalContext";
-import { Link, Links } from "react-router";
+import { Link } from "react-router";
 function Dock() {
   const context = useGlobalContext();
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -86,11 +86,11 @@ function Dock() {
           onChange={handletimeupdate}
         />
         <span>{context.formattime(context.duration)}</span>
-        <button className="back-btn" onClick={context.prevtrack}>
-          <img src="" alt="" className="dock-icon" />
+        <button className="back-btn control" onClick={context.prevtrack}>
+          <img src="/icons/back-btn.png" alt="" className="dock-icon" />
         </button>
         <button
-          className="play-btn"
+          className="play-btn control"
           onClick={() => {
             if (context.isPlaying) {
               context.pause();
@@ -99,10 +99,14 @@ function Dock() {
             }
           }}
         >
-          <img src={context.isPlaying ? "" : ""} alt="" className="dock-icon" />
+          <img
+            src={context.isPlaying ? "/icons/pause.png" : "/icons/play.png"}
+            alt=""
+            className="dock-icon"
+          />
         </button>
-        <button className="next-btn" onClick={context.nexttrack}>
-          <img src="" alt="" className="dock-icon" />
+        <button className="next-btn control" onClick={context.nexttrack}>
+          <img src="/icons/next-btn.png" alt="" className="dock-icon" />
         </button>
       </div>
       <div className="volume-control">
@@ -115,7 +119,9 @@ function Dock() {
           onChange={handlevolumechange}
           step={0.01}
         />
-        <span className="volume-percentage"></span>
+        <span className="volume-percentage">
+          {Math.floor((context.volume / 100) * 10000)}%
+        </span>
       </div>
       <div className="nav">
         <Link to="/">Home</Link>

@@ -23,13 +23,18 @@ const preset = [
     cover: "",
   },
 ];
-
 type track = {
   id: number;
   title: string;
   artist: string;
   url: string;
   cover: string;
+};
+
+type playlisttype = {
+  id: number;
+  name: string;
+  playlistTracks: track[];
 };
 type GlobalContextType = {
   alltracks: track[];
@@ -50,6 +55,11 @@ type GlobalContextType = {
   isPlaying: boolean;
   setisPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 
+  playlist: playlisttype[] | null;
+  setplaylist: React.Dispatch<React.SetStateAction<playlisttype[]>>;
+  selectedTracks: track[] | null;
+  setselectedTracks: React.Dispatch<React.SetStateAction<track[]>>;
+
   volume: number;
   setvolume: React.Dispatch<React.SetStateAction<number>>;
   play: () => void;
@@ -58,6 +68,7 @@ type GlobalContextType = {
   prevtrack: () => void;
   formattime: (time: number) => string;
   handleplaysong: (song: track, index: number) => void;
+  createPlaylist: (title: string, list: track[]) => void;
 };
 
 export const GlobalContext = createContext<GlobalContextType | null>(null);
@@ -70,6 +81,9 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [duration, setduration] = useState(0);
   const [isPlaying, setisPlaying] = useState(false);
   const [volume, setvolume] = useState(0.5);
+  const [playlist, setplaylist] = useState<playlisttype[]>([]);
+  const [selectedTracks, setselectedTracks] = useState<track[]>([]);
+
   const formattime = (time: number) => {
     if (isNaN(time)) return "0:00";
     const mins = Math.floor(time / 60);
@@ -105,7 +119,14 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     setcurrentTrackIndex(index);
     setisPlaying(true);
   };
-
+  const createPlaylist = (title: string, list: track[]) => {
+    const newlist: playlisttype = {
+      id: Date.now(),
+      name: title,
+      playlistTracks: list,
+    };
+    setplaylist((prev) => [...(prev ?? []), newlist]);
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -129,6 +150,11 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         prevtrack,
         formattime,
         handleplaysong,
+        playlist,
+        setplaylist,
+        createPlaylist,
+        selectedTracks,
+        setselectedTracks,
       }}
     >
       {children}
