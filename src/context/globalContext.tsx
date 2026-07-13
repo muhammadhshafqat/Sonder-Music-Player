@@ -13,7 +13,7 @@ const preset = [
     title: "Caramel",
     artist: "Sleep Token",
     url: "/tracks/Sleep Token - Caramel.mp3",
-    cover: "",
+    cover: "/trackImages/caramel.jpg",
   },
   {
     id: 3,

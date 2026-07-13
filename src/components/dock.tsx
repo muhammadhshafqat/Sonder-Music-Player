@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import "../styles/dock.css";
 import { useGlobalContext } from "../context/globalContext";
-
+import { Link, Links } from "react-router";
 function Dock() {
   const context = useGlobalContext();
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -116,6 +116,10 @@ function Dock() {
           step={0.01}
         />
         <span className="volume-percentage"></span>
+      </div>
+      <div className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/playlists">Playlists</Link>
       </div>
     </div>
   );
