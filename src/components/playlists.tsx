@@ -27,28 +27,45 @@ function Playlists() {
           setplaylistName(e.target.value);
         }}
       ></input>
-      <button type="submit" onClick={handleAdd}>
+      <button className="playlist-add-btn" type="submit" onClick={handleAdd}>
         +
       </button>
-      {!context.playlist || context.playlist.length == 0
-        ? "Create your first playlist"
-        : context.playlist?.map((playlist, index) => (
-            <div className="playlist-entry" key={index}>
-              <p className="playlist-title">{context.playlist![index].name}</p>
-              <p className="track-count">
-                Tracks: {context.playlist![index].playlistTracks.length}
-              </p>
-              <button
-                onClick={() => removePlaylist(context.playlist![index].id)}
-              >
-                <img
-                  className="delete-btn-icon"
-                  src="/icons/delete.png"
-                  alt=""
-                />
-              </button>
-            </div>
-          ))}
+      <div className="playlistentry-container">
+        {!context.playlist || context.playlist.length == 0
+          ? "No playlists found! Create one"
+          : context.playlist?.map((playlist, index) => (
+              <div className="playlist-entry" key={index}>
+                <p className="playlist-title">
+                  {context.playlist![index].name}
+                </p>
+                <p className="track-count">
+                  Tracks: {context.playlist![index].playlistTracks.length}
+                </p>
+                <button
+                  className="delete-btn"
+                  onClick={() => removePlaylist(context.playlist![index].id)}
+                >
+                  <img
+                    className="delete-btn-icon"
+                    src="/icons/delete.png"
+                    alt=""
+                  />
+                </button>
+                <div className="playlist-tracks">
+                  {context.playlist![index].playlistTracks.length == 0
+                    ? "NO tracks have been added"
+                    : context.playlist![index].playlistTracks.map(
+                        (track, pos) => (
+                          <div className="track-list-playlist" key={pos}>
+                            <p>{track.title}</p>
+                            <p>{track.artist}</p>
+                          </div>
+                        ),
+                      )}
+                </div>
+              </div>
+            ))}
+      </div>
     </div>
   );
 }

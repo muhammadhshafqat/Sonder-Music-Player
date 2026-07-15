@@ -122,7 +122,7 @@ function Dock() {
         <span className="volume-percentage">
           {Math.floor((context.volume / 100) * 10000)
             .toString()
-            .padStart(2, "0")}
+            .padStart(2, " ")}
           %
         </span>
       </div>

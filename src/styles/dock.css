@@ -1,6 +1,6 @@
 .dock-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 820px;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -78,11 +78,11 @@
   width: 20px;
   margin-left: 5px;
 }
-/* Nav */
 .nav {
   display: flex;
   flex-direction: row;
   gap: 6px;
+  margin-left: 15px;
   align-items: center;
 }
 
@@ -108,7 +108,7 @@
   height: 20px;
   -webkit-appearance: none;
   appearance: none;
-  padding: 1px 3px;
+  padding: 1px 4px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.25);
   outline: none;
@@ -118,7 +118,7 @@
   height: 20px;
   -webkit-appearance: none;
   appearance: none;
-  padding: 1px 3px;
+  padding: 1px 4px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.25);
   outline: none;
