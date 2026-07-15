@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGlobalContext } from "../context/globalContext";
+import "../styles/playlists.css";
 
 function Playlists() {
   const context = useGlobalContext();

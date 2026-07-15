@@ -6,7 +6,7 @@ const preset = [
     title: "Love You Less",
     artist: "Joji",
     url: "/tracks/Joji - Love You Less.mp3",
-    cover: "",
+    cover: "/trackImages/loveyouless.jpg",
   },
   {
     id: 2,
@@ -20,7 +20,21 @@ const preset = [
     title: "Dracula",
     artist: "Tame Impala",
     url: "/tracks/Tame Impala - Dracula.mp3",
-    cover: "",
+    cover: "/trackImages/dracula.jpg",
+  },
+  {
+    id: 4,
+    title: "Pixelated Kisses",
+    artist: "Joji",
+    url: "/tracks/Joji - PIXELATED KISSES.mp3",
+    cover: "/trackImages/loveyouless.jpg",
+  },
+  {
+    id: 5,
+    title: "Hollywood Bleedings",
+    artist: "Post Malone",
+    url: "/tracks/Post Malone - Hollywood's Bleeding.mp3",
+    cover: "/trackImages/hollywoodbleeding.png",
   },
 ];
 type track = {

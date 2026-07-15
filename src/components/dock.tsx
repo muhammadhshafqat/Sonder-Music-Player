@@ -42,7 +42,7 @@ function Dock() {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [context.currentTrack, context.currentTime]);
+  }, [context.currentTrack]);
 
   const handletimeupdate = (e: any) => {
     const audio = audioRef.current;
@@ -102,7 +102,7 @@ function Dock() {
           <img
             src={context.isPlaying ? "/icons/pause.png" : "/icons/play.png"}
             alt=""
-            className="dock-icon"
+            className="play-icon"
           />
         </button>
         <button className="next-btn control" onClick={context.nexttrack}>
@@ -120,7 +120,10 @@ function Dock() {
           step={0.01}
         />
         <span className="volume-percentage">
-          {Math.floor((context.volume / 100) * 10000)}%
+          {Math.floor((context.volume / 100) * 10000)
+            .toString()
+            .padStart(2, "0")}
+          %
         </span>
       </div>
       <div className="nav">
