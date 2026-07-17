@@ -5,6 +5,7 @@ import { Link } from "react-router";
 function Dock() {
   const context = useGlobalContext();
   const audioRef = useRef<HTMLAudioElement>(null);
+  const isDragging = useRef(false);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -27,8 +28,11 @@ function Dock() {
       }
     };
     const handleTimeUpdate = () => {
-      context.setcurrentTime(audio.currentTime);
+      if (!isDragging.current) {
+        context.setcurrentTime(audio.currentTime);
+      }
     };
+
     const handleEnded = () => {
       context.nexttrack();
     };
@@ -43,7 +47,6 @@ function Dock() {
       audio.removeEventListener("ended", handleEnded);
     };
   }, [context.currentTrack]);
-
   const handletimeupdate = (e: any) => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -51,6 +54,15 @@ function Dock() {
     audio.currentTime = newTime;
     context.setcurrentTime(newTime);
   };
+  const handleSliderMouseDown = () => {
+    isDragging.current = true;
+  };
+
+  const handleSliderMouseUp = (e: any) => {
+    isDragging.current = false;
+    handletimeupdate(e);
+  };
+
   const handlevolumechange = (e: any) => {
     const newvol = parseFloat(e.target.value);
     context.setvolume(newvol);
@@ -85,6 +97,8 @@ function Dock() {
           step={0.1}
           value={context.currentTime}
           onChange={handletimeupdate}
+          onMouseDown={handleSliderMouseDown}
+          onMouseUp={handleSliderMouseUp}
         />
         <span>{context.formattime(context.duration)}</span>
         <button className="back-btn control" onClick={context.prevtrack}>
