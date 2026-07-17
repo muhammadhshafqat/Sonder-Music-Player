@@ -16,7 +16,7 @@ function Library() {
         {context.alltracks.map((song, index) => (
           <div
             key={index}
-            className="track-entry"
+            className={`track-entry ${context.currentTrack.title === song.title ? "active-song" : ""}`}
             onClick={() => handleLibraryplays(song, index)}
           >
             <img

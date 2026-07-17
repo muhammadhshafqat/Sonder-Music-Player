@@ -3,7 +3,10 @@
   margin: 0 auto;
   margin-top: 20px;
   border-radius: 13px;
+
   padding: 10px 33px;
+  padding-bottom: 64px;
+
   overflow-y: auto;
 }
 
@@ -13,6 +16,7 @@
 }
 .track-container {
   padding: 24px;
+  padding-top: 0px;
   border-radius: 13px;
   max-height: 370px;
   overflow-y: auto;
@@ -35,6 +39,15 @@
     background-color 0.3s ease,
     box-shadow 0.3s ease,
     color 0.3s ease;
+}
+.active-song {
+  color: white;
+  transform: scale(1.01);
+  background-color: #8b0000;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 4px 8px rgba(255, 255, 255, 0.04),
+    0 12px 48px rgba(0, 0, 0, 0.2);
 }
 
 .track-entry:hover {
