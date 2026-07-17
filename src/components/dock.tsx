@@ -79,7 +79,6 @@ function Dock() {
       <audio
         ref={audioRef}
         preload="metadata"
-        crossOrigin="anonymous"
         src={context?.currentTrack.url}
       ></audio>
 
